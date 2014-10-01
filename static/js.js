@@ -18,11 +18,6 @@ app.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
       templateUrl: 'static/html/page.html',
       controller: 'Ctrl'
     })
-    .state('post', {
-      url: '/post',
-      templateUrl: 'static/html/post.html',
-      controller: 'Ctrl'
-    })
     .state('contact', {
       url: '/contact',
       templateUrl: 'static/html/contact.html',
@@ -41,6 +36,7 @@ app.controller('Ctrl', function($scope, $http, $window) {
   $scope.show_html = true;
   $scope.show_parent_html = true;
   $scope.tint = false;
+
   $scope.html_strings = {0:'<h3><i class="fa fa-cloud"></i></h3>',1:'<h3><i class="fa fa-square-o"></i></h3>'};
 
   $scope.load_page = function() {
@@ -56,50 +52,49 @@ app.controller('Ctrl', function($scope, $http, $window) {
   // $scope.get_content = function() { $scope.server = $http.get('/database'); };
   // $scope.post_content = function() { $http.post('/database', {content: $scope.content}); };
 
-  $scope.submit = function() {
-    $http.post('/email', 
-      {name: $scope.contact_name, 
-      email: $scope.contact_email, 
-      message: $scope.contact_message});
-    $scope.contact_sent = true;
-  };
-});
-
-
-app.directive('mapDirective', function() {
-  return function (scope, elem, attrs) {
-    var latitude = attrs.latitude && parseFloat(attrs.latitude, 10) || 43.074688;
-    var longitude = attrs.longitude && parseFloat(attrs.longitude, 10) || -89.384294;
-
-    var mapOptions = {
-      zoom: 8,
-      draggable: false,
-      center: new google.maps.LatLng(latitude, longitude),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false  
-    };
-
-    var map = new google.maps.Map(elem[0], mapOptions);
-  };
+  // $scope.submit = function() {
+  //   $http.post('/email', 
+  //     {name: $scope.contact_name, 
+  //     email: $scope.contact_email, 
+  //     message: $scope.contact_message});
+  //   $scope.contact_sent = true;
+  // };
 });
 
 app.directive('contenteditable', function() {
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      link: function(scope, element, attrs, ngModel) {
-        if(!ngModel) return;
-        ngModel.$render = function() { element.html(ngModel.$viewValue || ''); };
-        element.on('blur keyup change', function() { scope.$apply(read); });
-        read();
-        function read() {
-          var html = element.html();
-          if( attrs.stripBr && html == '<br>' ) { html = ''; }
-          ngModel.$setViewValue(html);
-        }
+  return {
+    restrict: 'A',
+    require: '?ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      if(!ngModel) return;
+      ngModel.$render = function() { element.html(ngModel.$viewValue || ''); };
+      element.on('blur keyup change', function() { scope.$apply(read); });
+      read();
+      function read() {
+        var html = element.html();
+        if( attrs.stripBr && html == '<br>' ) { html = ''; }
+        ngModel.$setViewValue(html);
       }
-    };
-  });
+    }
+  };
+});
+
+// app.directive('mapDirective', function() {
+//   return function (scope, elem, attrs) {
+//     var latitude = attrs.latitude && parseFloat(attrs.latitude, 10) || 43.074688;
+//     var longitude = attrs.longitude && parseFloat(attrs.longitude, 10) || -89.384294;
+
+//     var mapOptions = {
+//       zoom: 8,
+//       draggable: false,
+//       center: new google.maps.LatLng(latitude, longitude),
+//       mapTypeId: google.maps.MapTypeId.ROADMAP,
+//       scrollwheel: false  
+//     };
+
+//     var map = new google.maps.Map(elem[0], mapOptions);
+//   };
+// });
 
 
 // $scope.login = function() {
