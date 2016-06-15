@@ -1,15 +1,11 @@
-## App Engine CMS
+## Live Site Builder
 
-I love Wordpress, but it has limitations.
+This is a project that allows fairly non-techical people to edit CSS/HTML/contenteditable-text in their browser and watch the results of their changes appear immediately.  And by immediately, I mean instantly, not after-a-save like Wordpress or after-a-second like squarespace.
 
-Google App Engine CMS is a re-thinking of the simple CMS - built fast, flexible, and scalable.
-
-For some developers, this CMS will just save them time they would spend construcing things like pages, posts, users, comments, and a contact form for a simple website.
-
-For other developers, the main benefit of this CMS will be as a best-practices boilerplate - a starting-point to create amazing web experiences with AngularJS and Google App Engine.
+This idea has potential because build/deploy processes put some amount of time between when a user creates something and when they see the results their work.  I think people underestimate how much that (even very small) amount of time saps the creative energy that a human being feels while they are putting together a project.
 
 ## Technologies
 + [Google App Engine](https://developers.google.com/appengine/docs/python/) Back-End Web Server
 + [AngularJS](http://angularjs.org/) Front-End Javascript Framework
 
-© Copyright 2014 Ben Shope
+© 2014 Ben Shope
